@@ -1,30 +1,31 @@
 <script>
-	export let name;
+	import Item from "./Item.svelte";
+	let categories = ["restauranter", "bøker", "museer"];
+
+	function add() {
+		//should bring up modal for info
+		categories = categories.concat("new");
+	}
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<ul>
+		{#each categories as category}
+			<li>
+				<Item>
+					<span slot="name">
+						{category}
+					</span>
+				</Item>
+			</li>
+		{/each}
+	</ul>
+
+	<button class="addButton" on:click={add}> Add! </button>
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
+	.addButton {
+		color: aquamarine;
 	}
 </style>
